@@ -34,6 +34,15 @@ if defined CUDA_PATH (
 )
 
 :: ================================================
+:: Skip Setup If Already Completed
+:: ================================================
+
+if exist ".venv\.setup_complete" (
+    echo [INFO] Environment already set up. Skipping...
+    goto :end
+)
+
+:: ================================================
 :: Environment Setup
 :: ================================================
 
@@ -76,11 +85,10 @@ if errorlevel 1 (
 @REM uv pip install setuptools
 @REM uv pip install -r requirements.txt
 
-
 :: ================================================
-:: Done
+:: Mark Setup as Complete
 :: ================================================
-
+echo setup complete > .venv\.setup_complete
 echo [INFO] Environment setup complete.
 
 :end
