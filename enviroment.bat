@@ -52,7 +52,10 @@ if errorlevel 1 (
 :: Create virtual environment
 if not exist ".venv" (
     echo [INFO] Creating virtual environment...
+    
     uv venv
+    @REM uv venv -p 3.10
+
     if errorlevel 1 (
         echo [ERROR] Failed to create .venv.
         exit /b 1
